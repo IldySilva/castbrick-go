@@ -1,0 +1,27 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
+      - name: Build & vet
+        run: |
+          go build ./...
+          go vet ./...
+
+      - name: Tag is published to pkg.go.dev automatically
+        run: |
+          echo "Module: $(go list -m)"
+          echo "Version: ${{ github.ref_name }}"
+          echo "pkg.go.dev will index this release automatically once pushed."
