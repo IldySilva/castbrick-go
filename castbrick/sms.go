@@ -36,11 +36,6 @@ func (r *SmsResource) Send(ctx context.Context, opts SendSmsOptions) (*SendSmsRe
 	return &out, r.c.post(ctx, "/sms/send", body, &out)
 }
 
-func (r *SmsResource) Get(ctx context.Context, id string) (*SmsMessage, error) {
-	var out SmsMessage
-	return &out, r.c.get(ctx, "/sms/"+id, &out)
-}
-
 func (r *SmsResource) List(ctx context.Context, page, pageSize int) (*PagedResult[SmsMessage], error) {
 	var out PagedResult[SmsMessage]
 	return &out, r.c.get(ctx, fmt.Sprintf("/sms?pageNumber=%d&pageSize=%d", page, pageSize), &out)

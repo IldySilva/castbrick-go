@@ -23,14 +23,19 @@ type SendSmsResponse struct {
 }
 
 type SmsMessage struct {
-	ID          string     `json:"id"`
-	PhoneNumber string     `json:"phoneNumber"`
-	Message     string     `json:"message"`
-	Status      string     `json:"status"`
-	TenantID    string     `json:"tenantId"`
-	SentAt      *time.Time `json:"sentAt,omitempty"`
-	DeliveredAt *time.Time `json:"deliveredAt,omitempty"`
-	CreatedAt   time.Time  `json:"createdAt"`
+	ID            string     `json:"id"`
+	ContactName   *string    `json:"contactName,omitempty"`
+	RecipientPhone string    `json:"recipientPhone"`
+	Message       string     `json:"message"`
+	CampaignName  *string    `json:"campaignName,omitempty"`
+	CampaignID    *string    `json:"campaignId,omitempty"`
+	SenderID      *string    `json:"senderId,omitempty"`
+	Status        string     `json:"status"`
+	ErrorMessage  *string    `json:"errorMessage,omitempty"`
+	RetryCount    int        `json:"retryCount"`
+	ScheduledAt   *time.Time `json:"scheduledAt,omitempty"`
+	SentAt        *time.Time `json:"sentAt,omitempty"`
+	DeliveredAt   *time.Time `json:"deliveredAt,omitempty"`
 }
 
 // ── Contacts ─────────────────────────────────────────────────────────────────
